@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block body %}
+<div class="container my-3">
+  <form method="post" action="/">
+<div class="mb-3">
+<label for="title" class="form-label">To-Do Title</label>
+<input type="text" class="form-control" id="title" name="title" aria-describedby="emailHelp">
+</div>
+<div class="mb-3">
+<label for="desc" class="form-label">Description</label>
+<input type="text" class="form-control" name="desc" id="desc">
+</div>
+<div class="d-grid gap-2">
+<button class="btn btn-primary" type="submit">Submit</button>
+</div>
+</form>
+</div>
+{% if allTodo|length==0 %}
+<div class="container">
+    <div class="alert alert-warning" role="alert">
+      <h3>Add Your first todo now !!! </h3>
+      No ToDo were found
+    </div>
+   </div>
+   {% else %}
+   <div class="container">
+    <table class="table table-striped">
+  <thead>
+
+  <tr>
+    <th scope="col">S.No.</th>
+    <th scope="col">To-Do Title</th>
+    <th scope="col">To-Do Description</th>
+    <th scope="col">Date Created</th>
+    <th scope="col">Action</th>
+  </tr>
+</thead>
+<tbody class="table-group-divider">
+  {% for todo in allTodo %}
+  <tr>
+    <td scope="row">{{loop.index}}</td>
+    <td>{{todo.title}}</td>
+    <td>{{todo.desc}}</td>
+    <td>{{todo.date_created}}</td>
+    <td><a href="/deleted/{{todo.sno}}" type="button" class="btn btn-danger mx-3">Delete</button>
+      <a href="/update/{{todo.sno}}" type="button" class="btn btn-success">Update</button>
+    </td>
+  </tr>
+
+  {% endfor %}
+</tbody>
+</table>
+  </div>
+   {% endif %}
+   
+
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  </body>
+</html>
+   {% endblock body %}

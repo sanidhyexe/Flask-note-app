@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block body %}
+
+<div class="container my-3">
+    <form method="post" action="/update/{{updating_todo.sno}}">
+<div class="mb-3">
+ <label for="title" class="form-label">To-Do Title</label>
+ <input type="text" class="form-control" id="title" name="title" value="{{updating_todo.title}}" aria-describedby="emailHelp">
+</div>
+<div class="mb-3">
+ <label for="desc" class="form-label">Description</label>
+ <input type="text" class="form-control" name="desc" value="{{updating_todo.desc}}" id="desc">
+</div>
+<div class="d-grid gap-2">
+ <button class="btn btn-primary" type="submit">Update</button>
+</div>
+</form>
+</div>
+{% endblock body %}
